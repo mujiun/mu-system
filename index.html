@@ -709,7 +709,7 @@ document.querySelectorAll('.tabs').forEach(g =&gt;
     <section class="g-section" id="dropdown">
       <h2 class="h3">Dropdown</h2>
       <p class="sec-desc">Menu opens below the trigger. Toggle <code style="font-family:var(--mu-mono);font-size:12px;">.is-open</code>, sync <code style="font-family:var(--mu-mono);font-size:12px;">aria-expanded</code>. Escape and outside-click close it.</p>
-      <div class="cls"><code>dropdown</code><code>menu</code><code>menu-right</code><code>menu-item</code><code>menu-divider</code><code>menu-label</code></div>
+      <div class="cls"><code>dropdown</code><code>menu</code><code>menu-right</code><code>menu-item</code><code>menu-divider</code><code>menu-label</code><code>select-trigger</code></div>
 
       <div class="ex">
         <div class="ex-stage" style="min-height:260px; align-items:flex-start;">
@@ -751,7 +751,38 @@ document.querySelectorAll('.tabs').forEach(g =&gt;
           </ul>
         </div>
       </div>
-    </section>
+    
+      <div class="ex">
+        <div class="ex-stage" style="min-height:230px; align-items:flex-start;">
+          <div class="dropdown" id="ddSelDemo">
+            <button class="input select-trigger" aria-haspopup="menu" aria-expanded="false"
+                    onclick="const d=this.parentElement; d.classList.toggle('is-open'); this.setAttribute('aria-expanded', d.classList.contains('is-open'));">
+              <span>Q2 2026 · current</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="menu" role="menu">
+              <button class="menu-item is-selected" role="menuitem"
+                      onclick="const d=this.closest('.dropdown'); d.querySelector('.select-trigger span').textContent=this.textContent; d.querySelectorAll('.menu-item').forEach(m=>m.classList.toggle('is-selected',m===this)); d.classList.remove('is-open');">Q2 2026 · current</button>
+              <button class="menu-item" role="menuitem"
+                      onclick="const d=this.closest('.dropdown'); d.querySelector('.select-trigger span').textContent=this.textContent; d.querySelectorAll('.menu-item').forEach(m=>m.classList.toggle('is-selected',m===this)); d.classList.remove('is-open');">Q1 2026</button>
+              <button class="menu-item" role="menuitem"
+                      onclick="const d=this.closest('.dropdown'); d.querySelector('.select-trigger span').textContent=this.textContent; d.querySelectorAll('.menu-item').forEach(m=>m.classList.toggle('is-selected',m===this)); d.classList.remove('is-open');">Q4 2025</button>
+            </div>
+          </div>
+        </div>
+        <div class="ex-code"><button class="ex-copy">Copy</button><pre><code>&lt;!-- select-style: .input trigger, menu as the option list --&gt;
+&lt;div class="dropdown"&gt;
+  &lt;button class="input select-trigger" aria-haspopup="menu" aria-expanded="false"&gt;
+    &lt;span&gt;Q2 2026 · current&lt;/span&gt;
+    &lt;svg&gt;…chevron…&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;div class="menu" role="menu"&gt;
+    &lt;button class="menu-item is-selected" role="menuitem"&gt;Q2 2026 · current&lt;/button&gt;
+    &lt;button class="menu-item" role="menuitem"&gt;Q1 2026&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </div>
+</section>
 
     <!-- ==================== MODAL ==================== -->
     <section class="g-section" id="modal">

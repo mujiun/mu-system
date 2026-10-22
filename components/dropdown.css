@@ -19,6 +19,8 @@
   display: none;
 }
 .dropdown.is-open .menu { display: block; }
+/* keep the trigger field highlighted while its menu is open (touch-friendly — :focus can drop) */
+.dropdown.is-open .input { border-color: var(--mu-gray-900); box-shadow: var(--mu-focus-ring); }
 .menu-right { left: auto; right: 0; }
 
 .menu-item {
@@ -38,7 +40,7 @@
   text-decoration: none;
   transition: background var(--mu-fast) var(--mu-ease);
 }
-.menu-item:hover { background: var(--mu-gray-100); }
+.menu-item:hover, .menu-item:active, .menu-item:focus-visible { background: var(--mu-gray-100); outline: none; }
 .menu-item.is-selected { font-weight: 500; }
 
 .menu-divider { height: 1px; margin: 6px 4px; background: var(--mu-gray-100); }
@@ -51,3 +53,17 @@
   text-transform: uppercase;
   color: var(--mu-ink-3);
 }
+
+/* select-style trigger: an .input that opens a .menu — styleable replacement for <select>.
+   Use: <button class="input select-trigger"> label + chevron svg. Menu shows the options;
+   mark the current one with .is-selected and write it back into the trigger label. */
+.select-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: auto;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.select-trigger svg { flex-shrink: 0; }
